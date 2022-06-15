@@ -38,7 +38,7 @@ typedef struct instruction_s
 
 stack_t *addNode(stact_t **stack, unsigned int n);
 size_t print_all_stack(const stack_t *stack);
-void free(stack_t *stack);
+void freeStack(stack_t *stack);
 
 typedef struct assist
 {
