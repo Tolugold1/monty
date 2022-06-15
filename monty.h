@@ -2,6 +2,9 @@
 #define MONTY_H
 
 #include <stdlib.h>
+#include <ctype.h>
+#include <stdio.h>
+
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -36,5 +39,13 @@ typedef struct instruction_s
 stack_t *addNode(stact_t **stack, unsigned int n);
 size_t print_all_stack(const stack_t *stack);
 void free(stack_t *stack);
+
+typedef struct assist
+{
+	int n_dataStruct;
+	char *arg;
+} arguments;
+
+void push(stack_t **stack, unsigned int line_number);
 
 #endif
