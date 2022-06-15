@@ -5,7 +5,8 @@
  * values on the stack
  * Return: nothing
  */
-void pall(stack_t **stack, unsigned int line_number __atribute__((unused)))
+void pall(stack_t **stack, unsigned int line_number)
 {
+	(void)line_number;
 	print_all_stack(*stack);
 }

@@ -59,6 +59,6 @@ void file_err(char *argv);
 
 
 void push(stack_t **stack, unsigned int line_number);
-void pall(stack_t **stack, unsigned int line_number __atribute__((unused)));
+void pall(stack_t **stack, unsigned int line_number);
 
 #endif
