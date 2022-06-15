@@ -15,7 +15,7 @@ void push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	if (argument.n_dataStruct == 1)
+	if (arguments.n_dataStruct == 1)
 	{
 		addNode(stack, atoi(line_number));
 		if (addNode(stack, atoi(line_number)) == NULL)
