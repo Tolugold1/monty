@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <stdio.h>
-
+#include <stddef.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
