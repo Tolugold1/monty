@@ -46,6 +46,10 @@ typedef struct assist
 	char *arg;
 } arguments;
 
+void arg_error(void);
+void file_err(char *argv);
+
+
 void push(stack_t **stack, unsigned int line_number);
 
 #endif
