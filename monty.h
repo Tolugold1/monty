@@ -5,7 +5,8 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <stddef.h>
-
+#include <string.h>
+#include <strings.h>
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -36,9 +37,16 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-stack_t *addNode(stact_t **stack, unsigned int n);
+#define op { \
+	{"push", push},\
+	{"pall", pall},\
+	{NULL, NULL}\
+}
+
+stack_t *addNode(stack_t **stack, unsigned int n);
 size_t print_all_stack(const stack_t *stack);
 void freeStack(stack_t *stack);
+stack_t *add_qnode(stack_t **stack, unsigned int n);
 
 extern int globe;
 
@@ -54,12 +62,13 @@ typedef struct assist
 {
 	int n_dataStruct;
 	char *arg;
-} arguments;
+} assist;
+assist access;
 
 void arg_error(void);
 void file_err(char *argv);
 
-
+void opcode(stack_t **stack, char *str, unsigned int line_number);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);

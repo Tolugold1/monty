@@ -7,7 +7,7 @@
 
 void arg_error(void)
 {
-	dprintf(2, "USAGE: monty file\n");
+	fprintf(stderr, "USAGE: monty file\n");
 	exit(EXIT_FAILURE);
 }
 
@@ -21,6 +21,6 @@ void arg_error(void)
 
 void file_err(char *argv)
 {
-	dprintf(2, "Error: Can't open file %s\n", argv);
+	fprintf(stderr, "Error: Can't open file %s\n", argv);
 	exit(EXIT_FAILURE);
 }

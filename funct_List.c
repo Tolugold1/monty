@@ -17,7 +17,7 @@ stack_t *addNode(stack_t **stack, unsigned int n)
 	newNode = malloc(sizeof(stack_t));
 	if (!newNode)
 	{
-		dprintf(2, "Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		free(newNode);
 		return NULL;
 	}
@@ -27,8 +27,8 @@ stack_t *addNode(stack_t **stack, unsigned int n)
 
 	if (!(*stack))
 	{
-		newNode-next = NULL;
-		*stack = newNode;
+		newNode->next = NULL;
+		(*stack) = newNode;
 		return (newNode);
 	}
 	(*stack)->prev = newNode;
@@ -76,4 +76,47 @@ size_t print_all_stack(const stack_t *stack)
 		i++;
 	}
 	return (i);
+}
+
+/**
+ * add_qnode - function to add node to a queue
+ * @stack: pointer to the nodes
+ * @n: new node data value(int).
+ * Return: address of new node)
+ */
+
+stack_t *add_qnode(stack_t **stack, unsigned int n)
+{
+	stack_t *newNode;
+
+	if (!stack)
+	{
+		return (NULL);
+	}
+
+	newNode = malloc(sizeof(stack_t));
+	if (newNode == NULL)
+	{
+		free(newNode);
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+	newNode->n = n;
+	newNode->next = NULL;
+
+	if (!(*stack))
+	{
+		newNode->prev = NULL;
+		(*stack) = newNode;
+		return (newNode);
+	}
+
+	while ((*stack)->next)
+	{
+		(*stack) = (*stack)->next;
+	}
+	(*stack)->next = newNode;
+	newNode->prev = (*stack);
+	(*stack) = newNode;
+	return (newNode);
 }

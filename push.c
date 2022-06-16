@@ -9,18 +9,27 @@
 
 void push(stack_t **stack, unsigned int line_number)
 {
-	if ((isdigit(arguments.arg)) == 0)
+	if ((isdigit(access.arg)) == 0)
 	{
-		dprintf(2, "L%d: usage: push integer\n", line_number);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
-	if (arguments.n_dataStruct == 1)
+	if (access.n_dataStruct == 0)
 	{
-		addNode(stack, atoi(line_number));
-		if (addNode(stack, atoi(line_number)) == NULL)
+		addNode(stack, atoi(access.arg));
+		if (!addNode(stack, atoi(access.arg)))
+		{
+			exit(EXIT_FAILURE);
+		}
+	}
+	else
+	{
+		add_qnode(stack, atoi(access.arg));
+		if (!add_qnode(stack, atoi(access.arg)))
 		{
 			exit(EXIT_FAILURE);
 		}
 	}
 }
+
