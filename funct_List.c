@@ -65,10 +65,6 @@ size_t print_all_stack(const stack_t *stack)
 {
 	size_t i = 0;
 
-	if (!stack)
-	{
-		return (0);
-	}
 	while (stack)
 	{
 		printf("%d\n", stack->n);
