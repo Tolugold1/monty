@@ -8,19 +8,15 @@
  * Return: address of new node)
  */
 
-stack_t *addNode(stack_t **stack, unsigned int n)
+void addNode(stack_t **stack, unsigned int n)
 {
 	stack_t *newNode;
-
-	if (!stack)
-		return (NULL);
 
 	newNode = malloc(sizeof(stack_t));
 	if (!newNode)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		free(newNode);
-		return (NULL);
 	}
 
 	newNode->n = n;
@@ -30,12 +26,10 @@ stack_t *addNode(stack_t **stack, unsigned int n)
 	{
 		newNode->next = NULL;
 		(*stack) = newNode;
-		return (newNode);
 	}
 	(*stack)->prev = newNode;
 	newNode->next = (*stack);
 	(*stack) = newNode;
-	return (newNode);
 }
 
 /**
@@ -82,15 +76,12 @@ size_t print_all_stack(stack_t **stack)
  * Return: address of new node)
  */
 
-stack_t *add_qnode(stack_t **stack, unsigned int n)
+void add_qnode(stack_t **stack, unsigned int n)
 {
 	stack_t *newNode;
+	stack_t *temp;
 
-	if (!stack)
-	{
-		return (NULL);
-	}
-
+	temp = *stack;
 	newNode = malloc(sizeof(stack_t));
 	if (newNode == NULL)
 	{
@@ -105,15 +96,13 @@ stack_t *add_qnode(stack_t **stack, unsigned int n)
 	{
 		newNode->prev = NULL;
 		(*stack) = newNode;
-		return (newNode);
 	}
 
-	while ((*stack)->next)
+	while (temp->next)
 	{
-		(*stack) = (*stack)->next;
+		temp = temp->next;
 	}
-	(*stack)->next = newNode;
-	newNode->prev = (*stack);
-	(*stack) = newNode;
-	return (newNode);
+	temp->next = newNode;
+	newNode->prev = temp;
+	temp = newNode;
 }

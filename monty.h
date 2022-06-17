@@ -37,10 +37,10 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-stack_t *addNode(stack_t **stack, unsigned int n);
+void addNode(stack_t **stack, unsigned int n);
 size_t print_all_stack(stack_t **stack);
 void freeStack(stack_t **stack);
-stack_t *add_qnode(stack_t **stack, unsigned int n);
+void add_qnode(stack_t **stack, unsigned int n);
 
 extern int globe;
 
