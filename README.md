@@ -1,1 +1,2 @@
-Stack and Queue(LIFO & FIFO) in C
+Stack and Queue(LIFO & FIFO)
+
