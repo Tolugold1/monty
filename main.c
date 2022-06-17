@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
  * @stk: pointer to node
  * @s: the string to compare in order to know
  * maybe it stack or queue that'll be solve
- * @lines: the line number
+ * @line: the line number
  * Return: nothing
  */
 
