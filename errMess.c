@@ -11,8 +11,6 @@ void arg_error(void)
 	exit(EXIT_FAILURE);
 }
 
-
-
 /**
  * file_err - file error message
  * @argv: arguments passed

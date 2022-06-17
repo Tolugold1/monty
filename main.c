@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 		{
 			break;
 		}
-	
+
 		if (*line == '\n')
 		{
 			line_counter++;

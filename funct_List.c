@@ -43,14 +43,14 @@ stack_t *addNode(stack_t **stack, unsigned int n)
  * Return: none
  */
 
-void freeStack(stack_t *stack)
+void freeStack(stack_t **stack)
 {
 	stack_t *temp;
 
-	while (stack)
+	while (*stack)
 	{
-		temp = stack;
-		stack = stack->next;
+		temp = (*stack);
+		(*stack) = (*stack)->next;
 		free(temp);
 	}
 }
@@ -61,14 +61,14 @@ void freeStack(stack_t *stack)
  * Return: number of nodes
  */
 
-size_t print_all_stack(const stack_t *stack)
+size_t print_all_stack(const stack_t **stack)
 {
 	size_t i = 0;
 
-	while (stack)
+	while (*stack)
 	{
-		printf("%d\n", stack->n);
-		stack = stack->next;
+		printf("%d\n", (*stack)->n);
+		(*stack) = (*stack)->next;
 		i++;
 	}
 	return (i);

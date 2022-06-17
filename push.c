@@ -17,19 +17,18 @@ void push(stack_t **stack, unsigned int line_number)
 
 	if (access.n_dataStruct == 0)
 	{
-		addNode(stack, atoi(access.arg));
 		if (!addNode(stack, atoi(access.arg)))
 		{
 			exit(EXIT_FAILURE);
 		}
+		addNode(stack, atoi(access.arg));
 	}
 	else
 	{
-		add_qnode(stack, atoi(access.arg));
 		if (!add_qnode(stack, atoi(access.arg)))
 		{
 			exit(EXIT_FAILURE);
 		}
+		add_qnode(stack, atoi(access.arg));
 	}
 }
-
