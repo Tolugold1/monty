@@ -61,14 +61,14 @@ void freeStack(stack_t **stack)
  * Return: number of nodes
  */
 
-size_t print_all_stack(const stack_t *stack)
+size_t print_all_stack(stack_t **stack)
 {
 	size_t i = 0;
 
-	while (stack)
+	while (*stack)
 	{
-		printf("%d\n", stack->n);
-		stack = stack->next;
+		printf("%d\n", (*stack)->n);
+		(*stack) = (*stack)->next;
 		i++;
 	}
 	return (i);
