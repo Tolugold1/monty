@@ -63,7 +63,7 @@ assist access;
 void arg_error(void);
 void file_err(char *argv);
 
-void (*fetch_opcode(stack_t **stack, char *str, int line_number))(stack_t **, unsigned int);
+void (*fetch_ops(stack_t **stk, char *s, int line))(stack_t **, unsigned int);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);

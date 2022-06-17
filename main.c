@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <string.h>
 
-int globe = 0;
 /**
  * main - entry point
  * @argc: argument counte
@@ -35,7 +34,7 @@ int main(int argc, char *argv[])
 			(void)line_number;
 		}
 		else if (string[0] == '\n')
-			fetch_opcode(&stack, string, line_number)(&stack,
+			fetch_ops(&stack, string, line_number)(&stack,
 					line_number);
 		line_number++;
 	}
@@ -44,15 +43,15 @@ int main(int argc, char *argv[])
 }
 
 /**
- * fetch_opcode - the function to be called
- * @stack: pointer to node
- * @str: the string to compare in order to know
+ * fetch_ops - the function to be called
+ * @stk: pointer to node
+ * @s: the string to compare in order to know
  * maybe it stack or queue that'll be solve
- * line_number: the line number
+ * @lines: the line number
  * Return: nothing
  */
 
-void (*fetch_opcode(stack_t **stack, char *str, int line_number))(stack_t **, unsigned int)
+void (*fetch_ops(stack_t **stk, char *s, int line))(stack_t **, unsigned int)
 {
 	int i = 0;
 	unsigned int j;
@@ -65,18 +64,18 @@ void (*fetch_opcode(stack_t **stack, char *str, int line_number))(stack_t **, un
 
 	while (ops[i].opcode)
 	{
-		for (j = 0; j < strlen(str); j++)
+		for (j = 0; j < strlen(s); j++)
 		{
-			if (str[j] == '\n')
-				str[j] = '\0';
+			if (s[j] == '\n')
+				s[j] = '\0';
 		}
-		if (strcmp(ops[i].opcode, str) == 0)
+		if (strcmp(ops[i].opcode, s) == 0)
 		{
 			return (ops[i].f);
 		}
 		i++;
 	}
-	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, str);
-	freeStack(stack);
+	fprintf(stderr, "L%d: unknown instruction %s\n", line, s);
+	freeStack(stk);
 	exit(EXIT_FAILURE);
 }

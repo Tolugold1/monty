@@ -11,15 +11,16 @@
 stack_t *addNode(stack_t **stack, unsigned int n)
 {
 	stack_t *newNode;
+
 	if (!stack)
-		return NULL;
+		return (NULL);
 
 	newNode = malloc(sizeof(stack_t));
 	if (!newNode)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		free(newNode);
-		return NULL;
+		return (NULL);
 	}
 
 	newNode->n = n;
