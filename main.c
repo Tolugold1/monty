@@ -16,12 +16,11 @@ int main(int argc, char *argv[])
 {
 	FILE *file;
 	char line[1024];
-	int line_len = 0;
 	unsigned int line_counter = 1;
 	stack_t *stack = NULL;
 	char *string = NULL;
 
-	access.n_dataStruct = 0;
+	access.n_dataStruct = 1;
 	if (argc < 2 || argc > 2)
 	{
 		arg_error();
@@ -30,7 +29,7 @@ int main(int argc, char *argv[])
 	file = fopen(argv[1], "r");
 	if (file == NULL)
 		file_err(argv[1]);
-	while (fgets(line, line_len, file))
+	while (fgets(line, sizeof(line), file))
 	{
 		if (globe)
 		{
@@ -52,7 +51,7 @@ int main(int argc, char *argv[])
 		opcode(&stack, string, line_counter);
 		line_counter++;
 	}
-	freeStack(stack);
+	freeStack(&stack);
 	fclose(file);
 	exit(globe);
 }
@@ -70,23 +69,28 @@ void opcode(stack_t **stack, char *str, unsigned int line_number)
 {
 	int i = 0;
 
-	instruction_t ops[] = op;
+	instruction_t ops[] = {
+		{"push", push},
+		{"pall", pall},
+		{NULL, NULL}
+	};
 
 	if (!strcmp(str, "queue"))
 	{
-		access.n_dataStruct = 1;
+		access.n_dataStruct = 0;
 		return;
 	}
 	if (!strcmp(str, "stack"))
 	{
-		access.n_dataStruct = 0;
+		access.n_dataStruct = 1;
 	}
 
 	while (ops[i].opcode)
 	{
-		if (strcmp(ops[i].opcode, str) == 1)
+		if (strcmp(ops[i].opcode, str) == 0)
 		{
 			ops[i].f(stack,line_number);
+			return;
 		}
 		i++;
 	}

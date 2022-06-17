@@ -37,14 +37,8 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-#define op { \
-	{"push", push},\
-	{"pall", pall},\
-	{NULL, NULL}\
-}
-
 stack_t *addNode(stack_t **stack, unsigned int n);
-size_t print_all_stack(const stack_t **stack);
+size_t print_all_stack(const stack_t *stack);
 void freeStack(stack_t **stack);
 stack_t *add_qnode(stack_t **stack, unsigned int n);
 
