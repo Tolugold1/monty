@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 	if (!file)
 		file_err(argv[1]);
 
-	while (fgets(line, sizeof(line), file) != NULL)
+	while (fgets(line, sizeof(line), file))
 	{
 		string = strtok(line, " \t");
 		if (string[0] == '#')
@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 			(void)stack;
 			(void)line_number;
 		}
-		else if (string[0] == '\n')
+		else if (string[0] != '\n')
 			fetch_ops(&stack, string, line_number)(&stack,
 					line_number);
 		line_number++;

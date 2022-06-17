@@ -9,11 +9,12 @@
 
 void push(stack_t **stack, unsigned int line_number)
 {
-	char *string = NULL;
-	int arg;
+	char str[128] = "";
+	char *string = str;
+	int var;
 	unsigned int i;
 
-	string = strtok(NULL, " \t");
+	access.arg = strtok(NULL, " \t");
 	if (string)
 	{
 		if (string[0] == '\n')
@@ -23,13 +24,14 @@ void push(stack_t **stack, unsigned int line_number)
 		}
 		for (i = 0; i < strlen(string); i++)
 		{
-			if (!isdigit(string[i]) && string[0] != '-' && string[i] != '\n')
+			if (!isdigit(string[i]) && string[0] != '-' &&
+					string[i] != '\n')
 			{
 				fprintf(stderr, "L%d: usage: push integer\n", line_number);
 				exit(EXIT_FAILURE);
 			}
 		}
-		arg = atoi(string);
+		var = atoi(string);
 	}
 	else
 	{
@@ -37,13 +39,12 @@ void push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	if (access.n_dataStruct)
+	if (access.n_dataStruct == 0)
 	{
-		addNode(stack, arg);
+		addNode(stack, var);
 	}
 	else
 	{
-		add_qnode(stack, arg);
+		add_qnode(stack, var);
 	}
 }
-

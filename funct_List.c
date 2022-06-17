@@ -17,6 +17,7 @@ void addNode(stack_t **stack, unsigned int n)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		free(newNode);
+		exit(EXIT_FAILURE);
 	}
 
 	newNode->n = n;
@@ -48,25 +49,6 @@ void freeStack(stack_t **stack)
 		(*stack) = (*stack)->next;
 		free(temp);
 	}
-}
-
-/**
- * print_all_stack - function to print all nodes
- * @stack: pointer to the node
- * Return: number of nodes
- */
-
-size_t print_all_stack(stack_t **stack)
-{
-	size_t i = 0;
-
-	while (*stack)
-	{
-		printf("%d\n", (*stack)->n);
-		(*stack) = (*stack)->next;
-		i++;
-	}
-	return (i);
 }
 
 /**
